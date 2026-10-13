@@ -6,6 +6,7 @@ Aplicação web simples para gerenciar tarefas do dia a dia, desenvolvida com **
 
 - Adicionar novas tarefas
 - Remover tarefas da lista
+- Persistência dos dados com `localStorage` (as tarefas continuam salvas ao recarregar ou fechar a página)
 - Validação de campo vazio, com alerta ao usuário
 - Atualização dinâmica da lista na tela (manipulação do DOM)
 
@@ -13,6 +14,7 @@ Aplicação web simples para gerenciar tarefas do dia a dia, desenvolvida com **
 
 - [HTML5](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
 - [JavaScript (ES6+)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+- [Web Storage API (localStorage)](https://developer.mozilla.org/pt-BR/docs/Web/API/Window/localStorage)
 
 ## Estrutura do projeto
 
@@ -41,23 +43,23 @@ Não é necessário instalar nenhuma dependência.
 1. Digite o nome da tarefa no campo de texto.
 2. Clique no botão **Registrar** para adicioná-la à lista.
 3. Para remover uma tarefa, clique no link **Excluir** ao lado dela.
+4. Suas tarefas ficam salvas automaticamente no navegador.
 
 ## Conceitos praticados
 
 - Seleção de elementos com `querySelector`
 - Criação dinâmica de elementos (`createElement`, `createTextNode`, `appendChild`)
-- Manipulação de arrays (`push`, `splice`, `map`, `indexOf`)
+- Manipulação de arrays (`push`, `splice`, `map`)
+- Persistência de dados com `localStorage` (`getItem`, `setItem`) e `JSON` (`parse`, `stringify`)
 - Eventos (`onclick`)
 - Validação básica de formulário
 
 ## Melhorias futuras
 
-- [ ] Persistir as tarefas com `localStorage`
 - [ ] Permitir adicionar tarefas pressionando a tecla **Enter**
 - [ ] Marcar tarefas como concluídas
 - [ ] Editar tarefas existentes
 - [ ] Estilizar a interface com CSS
-- [ ] Corrigir a exclusão de tarefas com texto repetido (usar o índice do `map` em vez de `indexOf`)
 
 ## Contribuição
 
