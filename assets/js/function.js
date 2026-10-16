@@ -1,63 +1,65 @@
-const listElement = document.querySelector("#wrapper-container ul");
-const inputElement = document.querySelector("#wrapper-container input");
-const buttonElement = document.querySelector("#wrapper-container button");
 
-let tarefa = JSON.parse(localStorage.getItem("@listaTarefas")) || [];
-
-function rendeTarefa(todo) {
-     listElement.innerHTML = "";
-
-     tarefa.map((todo) => {
-        let liElement = document.createElement("li");
-        let TarefaText = document.createTextNode(todo);
-
-        let linkElement = document.createElement("a");
-        linkElement.setAttribute("href","#");
-
-        let linkText = document.createTextNode("Excluir");
+let listElement = document.querySelector("#app ul");
+let inputElement = document.querySelector("#app input");
+let buttonElement = document.querySelector("#app button");
 
 
-        liElement.appendChild(TarefaText);
-        listElement.appendChild(liElement);
+let tarefas = [];
 
-         let posicao = tarefa.indexOf(todo);
+function renderTarefa() {
+    listElement.innerHTML = "";
 
-         linkElement.setAttribute("onclick",`deletarTarefa(${posicao})`);
+    tarefas.map((todo) => {
+         //console.log("Tarefa:" + todo);
 
-          liElement.appendChild(linkElement);
+         let liElement = document.createElement("li");
+         let tarefaText = document.createTextNode(todo);
+
+         let linkElement = document.createElement("a");
+
+         linkElement.setAttribute("href","#");
+
+         let linkText = document.createTextNode("Excluir");
+
          linkElement.appendChild(linkText);
-     })
+
+         let posicao = tarefas.indexOf(todo);
+
+         linkElement.setAttribute("onclick", `deletarTarefa(${posicao})`);
+
+         liElement.appendChild(tarefaText);
+         listElement.appendChild(liElement);
+         liElement.appendChild(linkElement);
+
+
+
+    })
 }
 
-
-rendeTarefa();
-
 function adicionarTarefa() {
-    if(inputElement.value === "") {
-        alert("Digite alguma coisa!");
+    if(inputElement.value === '') {
+        alert("Digite alguma tarefa!");
+
         return false;
     } else {
+        //console.log(inputElement.value);
+
         let novaTarefa = inputElement.value;
 
-        tarefa.push(novaTarefa);
+        tarefas.push(novaTarefa);
 
         inputElement.value = '';
 
-        rendeTarefa();
-        salvarDados();
+        renderTarefa();
     }
 }
-
 
 buttonElement.onclick = adicionarTarefa;
 
 function deletarTarefa(posicao) {
-    tarefa.splice(posicao,1);
+   // alert("posicao do item " + posicao);
 
-    rendeTarefa();
-    salvarDados();
-}
+   tarefas.splice(posicao, 1);
 
-function salvarDados() {
-    localStorage.setItem("@listaTarefas",JSON.stringify(tarefa));
+   renderTarefa();
 }
